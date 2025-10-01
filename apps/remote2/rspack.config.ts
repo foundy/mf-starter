@@ -11,6 +11,9 @@ export default defineConfig({
 	entry: {
 		main: "./src/main.tsx"
 	},
+	devServer: {
+		port: 4002,
+	},
 	resolve: {
 		extensions: ["...", ".ts", ".tsx", ".jsx"]
 	},

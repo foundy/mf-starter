@@ -1,6 +1,7 @@
 import { defineConfig } from "@rspack/cli";
 import { rspack } from "@rspack/core";
 import { ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh";
+import { createModuleFederationConfig, ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -8,8 +9,14 @@ const isDev = process.env.NODE_ENV === "development";
 const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"];
 
 export default defineConfig({
-	entry: {
-		main: "./src/main.tsx"
+	output: {
+		publicPath: "/"
+	},
+	// entry: {
+	// 	main: "./src/main.tsx"
+	// },
+	devServer: {
+		port: 4001,
 	},
 	resolve: {
 		extensions: ["...", ".ts", ".tsx", ".jsx"]
@@ -47,6 +54,20 @@ export default defineConfig({
 		]
 	},
 	plugins: [
+		new ModuleFederationPlugin(
+			createModuleFederationConfig({
+				name: 'remote1',
+				// filename: 'remoteEntry.js',
+				exposes: {
+					'./Module': './src/App',
+					// './Button': './src/components/Button',
+				},
+				shared: {
+					react: { singleton: true, requiredVersion: '^18.0.0' },
+					'react-dom': { singleton: true, requiredVersion: '^18.0.0' },
+				},
+			})
+		),
 		new rspack.HtmlRspackPlugin({
 			template: "./index.html"
 		}),
