@@ -1,10 +1,7 @@
-import './App.css';
-
 const App = () => {
   return (
     <div className="content">
-      <h1>Rsbuild with Remote2</h1>
-      <p>Start building amazing things with Rsbuild.</p>
+      <h1>Remote2</h1>
     </div>
   );
 };
