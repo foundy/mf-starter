@@ -5,16 +5,19 @@ import { pluginReact } from '@rsbuild/plugin-react';
 export default defineConfig({
   server: {
     port: 3001,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   source: {
     entry: {
-      index: './index.ts',
+      index: './src/index.ts',
     },
   },
   plugins: [
     pluginReact(),
     pluginModuleFederation({
-      name: 'rsbuildRemote1',
+      name: 'remote1',
       exposes: {
         './App': './src/App.tsx',
       },

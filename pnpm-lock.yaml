@@ -29,6 +29,9 @@ importers:
       react-dom:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
+      remote1:
+        specifier: workspace:*
+        version: link:../remote1
     devDependencies:
       '@eslint/js':
         specifier: ^9.35.0

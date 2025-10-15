@@ -9,10 +9,10 @@ export default defineConfig({
   plugins: [
     pluginReact(),
     pluginModuleFederation({
-      name: 'rsbuild-host',
+      name: 'host',
       remotes: {
-        '@apps/remote1': 'rsbuild-remote1@http://localhost:3001/mf-manifest.json',
-        '@apps/remote2': 'rsbuild-remote2@http://localhost:3002/mf-manifest.json',
+        remote1: 'remote1@http://localhost:3001/mf-manifest.json',
+        remote2: 'remote2@http://localhost:3002/mf-manifest.json',
       },
       shared: {
         react: { singleton: true, requiredVersion: '^19.1.1' },
